@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Rideboard{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block page_content %}
+<form action="." method="post">
+	<div class="row">
+		<div class="col-md-6">
+      <img src="/static/wmko.jpg">
+      <h1>Rideboard</h1>
+		  <table class="table table-bordered table-responsive">
+			  <thead>
+			   <tr>
+			     <th scope="col">Vehicle</th>
+			     <th scope="col">Location</th>
+			     <th scope="col">Assigned to</th>
+           <th scope="col">Issues</th>
+           <th scope="col">Assign Car</th>
+           <th scope="col">Add Issue</th>
+			    </tr>
+			   </thead>
+         <tbody>
+         {% for car in cars %}
+           {% if car.issue %}
+           <tr class="bg-danger">
+           {% else %}
+            <tr>
+           {% endif %}
+              <th scope="row">{{ car.name }}</th>
+              <td>{{ car.location }}</td>
+              <td>{{ car.assigned }}</td>
+              <td>{{ car.issue }}</td>
+              <td><input type="submit" name="autoon" id="autoon" value="Assign Car"></td>
+              <td><input type="submit" name="autoon" id="autoon" value="Report Issue"></td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+	</div>
+{% endblock %}

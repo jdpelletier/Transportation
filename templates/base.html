@@ -1,0 +1,15 @@
+{% extends "bootstrap/base.html" %}
+
+{% block head %}
+      {{ super() }}
+    <link rel="stylesheet" href='/static/css/style.css' />
+    <link rel="shortcut icon" href='/static/favicon.ico' />
+    <title>{% block title %}{% endblock %} - Rideboard</title>
+
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        {% block page_content %}{% endblock %}
+    </div>
+{% endblock %}
