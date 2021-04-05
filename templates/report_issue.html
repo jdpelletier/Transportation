@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Report Issue{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block page_content %}
+<img src="/static/wmko.jpg">
+<h1>Report Vehicle Issue</h1>
+<form>
+  <div class="form-group">
+    <label for="vehiclechoices">Vehicle</label>
+    <select class="form-control" id="exampleFormControlSelect1">
+      <option>K2</option>
+      <option>K3</option>
+      <option>K4</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="issuetext">Explain issue in detail:</label>
+    <textarea class="form-control" id="issuetext" rows="10"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+{% endblock %}

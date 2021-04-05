@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Report Issue{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block page_content %}
+<img src="/static/wmko.jpg">
+<h1>Current vehicle problems</h1>
+
+{% for car in cars %}
+  {% if car.issue %}
+  <h2>{{car.name}}</h2>
+  {{ car.issue_report }}
+  <br>
+    ---------------------
+  <br>
+  {% endif %}
+{% endfor %}
+{% endblock %}

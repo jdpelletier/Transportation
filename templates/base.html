@@ -8,6 +8,29 @@
 
 {% endblock %}
 
+{% block navbar %}
+    <div class="navbar navbar-light" role="navigation" style="background-color: white">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Navbar</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">Rideboard</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('report_issue_') }}">Report Vehicle Issue</a></li>
+                    <li><a href="{{ url_for('viewissues_') }}"">View Issues</a></li>
+                    <li><a href="/bootstrap"></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
 {% block content %}
     <div class="container">
         {% block page_content %}{% endblock %}
