@@ -1,4 +1,4 @@
 from flask import Flask, render_template, request
 
-def home(cars):
-    return render_template("home.html", cars=cars)
+def home(Vehicle):
+    return render_template("home.html", vehicles=Vehicle.query.all())

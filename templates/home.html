@@ -21,16 +21,16 @@
 			    </tr>
 			   </thead>
          <tbody>
-         {% for car in cars %}
-           {% if car.issue %}
+         {% for vehicle in vehicles %}
+           {% if vehicle.problem %}
            <tr class="bg-danger">
            {% else %}
             <tr>
            {% endif %}
-              <th scope="row">{{ car.name }}</th>
-              <td>{{ car.location }}</td>
-              <td>{{ car.assigned }}</td>
-              {% if car.issue %}
+              <th scope="row">{{ vehicle.name }}</th>
+              <td>{{ vehicle.location }}</td>
+              <td>{{ vehicle.assignment }}</td>
+              {% if vehicle.problem %}
               <td>Yes</td>
               {% else %}
               <td>No</td>

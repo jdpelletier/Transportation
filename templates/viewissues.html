@@ -9,10 +9,14 @@
 <img src="/static/wmko.jpg">
 <h1>Current vehicle problems</h1>
 
-{% for car in cars %}
-  {% if car.issue %}
-  <h2>{{car.name}}</h2>
-  {{ car.issue_report }}
+{% for vehicle in vehicles %}
+  {% if vehicle.problem %}
+  <h2>{{vehicle.name}}</h2>
+    {% for report in vehicle.reports %}
+      {{ report.date_posted }}
+  <br>
+      {{ report.content}}
+    {% endfor %}
   <br>
     ---------------------
   <br>
