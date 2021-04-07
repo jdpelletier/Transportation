@@ -8,18 +8,37 @@
 {% block page_content %}
 <img src="/static/wmko.jpg">
 <h1>Current vehicle problems</h1>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card bg-light mb-3">
+      <div class="card-body">
+        <form action="/resolve_issue" method="POST">
+          <div class="form-group">
 
-{% for vehicle in vehicles %}
-  {% if vehicle.problem %}
-  <h2>{{vehicle.name}}</h2>
-    {% for report in vehicle.reports %}
-      {{ report.date_posted }}
-  <br>
-      {{ report.content}}
-    {% endfor %}
-  <br>
-    ---------------------
-  <br>
-  {% endif %}
-{% endfor %}
+            {% for vehicle in vehicles %}
+              {% if vehicle.problem %}
+              {% for report in vehicle.reports %}
+              {% if report.resolved == False %}
+                <h2 class="card-title">{{vehicle.name}}</h2>
+                <p class="card-text">
+                {{ report.date_posted }}
+                <br>
+                <br>
+                {{ report.content }}
+                <br>
+                </p>
+                      <button type="submit" class="btn btn-primary" name="submit" value={{ report.id }}>Resolve</button>
+                    {% endif %}
+                <br>
+                  {% endfor %}
+                <br>
+                <br>
+
+             </div>
+             </div>
+            </div>
+            {% endif %}
+          {% endfor %}
+           </div>
+          </div>
 {% endblock %}

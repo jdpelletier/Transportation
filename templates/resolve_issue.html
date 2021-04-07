@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Report Issue{% endblock %}
+{% block head %}
+  {{ super() }}
+{% endblock %}
+
+{% block page_content %}
+<img src="/static/wmko.jpg">
+<h1>Resolve Vehicle Issue</h1>
+<h2>{{ vehicle.name }}</h2>
+{{ report.content }}
+<form action="/resolution_confirmed" method="POST">
+  <div class="form-group">
+    <label for="resolutiontext">Resolution details:</label>
+    <textarea class="form-control" id="resolutiontext" name = "issuetext" rows="10"></textarea>
+  </div>
+  <button type="submit" class="btn btn-primary" name="submit" value={{ report.id }}>Submit</button>
+</form>
+{% endblock %}
