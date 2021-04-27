@@ -27,7 +27,7 @@ for employee in employees_list:
 location = ''
 time = ''
 for employee in employees_list:
-    if employee['pickup'] != location or if employee['time'] != time:
+    if (employee['pickup'] != location) or (employee['time'] != time):
         location = employee['pickup']
         time = employee['time']
         print(f"{location} to SU {time}")
