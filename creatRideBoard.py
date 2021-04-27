@@ -8,6 +8,11 @@ cur = conn.cursor()
 cur.execute(f'select * from dailySched where Date="{today}"')
 rows = cur.fetchall()
 
+employees_list = []
+
 for row in rows:
     if row[6] == 'SU':
-        print(row[2])
+        dic = {'name':row[2],'pickup':row[4],'time':row[7]}
+        employees_list.append(dic)
+
+print(employees_list)
