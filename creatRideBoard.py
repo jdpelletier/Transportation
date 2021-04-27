@@ -25,4 +25,5 @@ for employee in employees_list:
             employees_list.remove(employee)
 
 
-print(employees_list)
+for employee in employees_list:
+    print(employee['name'])
