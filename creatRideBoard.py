@@ -1,5 +1,5 @@
 import pymysql.cursors
-import datetime.datetime
+from datetime import datetime
 
 today = datetime.now().strftime("%Y-%m-%d")
 
