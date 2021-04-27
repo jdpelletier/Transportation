@@ -24,6 +24,11 @@ for employee in employees_list:
         if employee['name'] == row[1]:
             employees_list.remove(employee)
 
-
+location = ''
+time = ''
 for employee in employees_list:
+    if employee['pickup'] != location or if employee['time'] != time:
+        location = employee['pickup']
+        time = employee['time']
+        print(f"{location} to SU {time}")
     print(employee['name'])
