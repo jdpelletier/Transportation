@@ -5,7 +5,7 @@ today = datetime.now().strftime("%Y-%m-%d")
 
 conn = pymysql.connect(user='sched', password='sched', host='mysqlserver', database='schedules', autocommit=True)
 cur = conn.cursor()
-cur.execute(f'select * from dailySched where Date="{today}" order by startTime, Basecamp, Name')
+cur.execute(f'select * from dailySched where Date="{today}" order by Basecamp, startTime, Name')
 rows = cur.fetchall()
 
 employees_list = []
