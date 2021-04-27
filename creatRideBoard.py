@@ -17,7 +17,7 @@ for row in rows:
 
 conn = pymysql.connect(user='pcal', password='pcal', host='mysqlserver', database='pcal', autocommit=True)
 cur = conn.cursor()
-cur.execute(f'select * from loa where FromDate<="{now}" and ToDate>="{now}"')
+cur.execute(f'select * from loa where FromDate<="{today}" and ToDate>="{today}"')
 rows = cur.fetchall()
 for employee in employees_list:
     for row in rows:
