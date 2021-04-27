@@ -15,4 +15,14 @@ for row in rows:
         dic = {'name':row[2],'pickup':row[4],'time':row[7]}
         employees_list.append(dic)
 
+conn = pymysql.connect(user='pcal', password='pcal', host='mysqlserver', database='pcal', autocommit=True)
+cur = conn.cursor()
+cur.execute(f'select * from employee')
+rows = cur.fetchall()
+for employee in employees_list:
+    for row in rows:
+        if employee['name'] == row[1]:
+            employees_list.remove(employee)
+
+
 print(employees_list)
