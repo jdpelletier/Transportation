@@ -12,7 +12,7 @@ employees_list = []
 
 for row in rows:
     if row[6] == 'SU':
-        dic = {'name':row[2],'pickup':row[4],'time':row[7]}
+        dic = {'name':row[2],'pickup':row[4],'time':row[7], 'note':row[14]}
         employees_list.append(dic)
 
 conn = pymysql.connect(user='pcal', password='pcal', host='mysqlserver', database='pcal', autocommit=True)
@@ -31,4 +31,7 @@ for employee in employees_list:
         location = employee['pickup']
         time = employee['time']
         print(f"{location} to SU {time}")
-    print(f"     {employee['name']}")
+    if 'HP' in employee['note']:
+        print(f"     {employee['name']} (HPP)")
+    else:
+        print(f"     {employee['name']}")
