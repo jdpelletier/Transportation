@@ -43,7 +43,7 @@ for employee in employees_list:
         content += line
         print(f"     {employee['name']} (HPP)")
     else:
-        line = f"     {employee['name']} (HPP)\n"
+        line = f"     {employee['name']}\n"
         content += line
         print(f"     {employee['name']}")
 
