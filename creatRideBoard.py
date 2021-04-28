@@ -36,15 +36,15 @@ for employee in employees_list:
         location = employee['pickup']
         time = employee['time']
         line = f"{location} to SU {time}\n"
-        content + = line
+        content += line
         print(f"{location} to SU {time}")
     if 'HP' in employee['note']:
         line = f"     {employee['name']} (HPP)\n"
-        content + = line
+        content += line
         print(f"     {employee['name']} (HPP)")
     else:
         line = f"     {employee['name']} (HPP)\n"
-        content + = line
+        content += line
         print(f"     {employee['name']}")
 
 
