@@ -1,5 +1,5 @@
 import pymysql.cursors
-from datetime import datetime
+from datetime import datetime, timedelta
 todaydate = datetime.now() + timedelta(days=1)
 today = todaydate.strftime("%Y-%m-%d")
 
