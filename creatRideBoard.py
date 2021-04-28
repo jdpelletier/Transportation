@@ -1,7 +1,7 @@
 import pymysql.cursors
 from datetime import datetime
-
-today = datetime.utcnow().strftime("%Y-%m-%d")
+todaydate = datetime.date.today() + datetime.timedelta(days=1)
+today = todaydate.strftime("%Y-%m-%d")
 
 conn = pymysql.connect(user='sched', password='sched', host='mysqlserver', database='schedules', autocommit=True)
 cur = conn.cursor()
