@@ -29,13 +29,13 @@ for employee in employees_list:
 
 location = ''
 time = ''
-content = f"A rideboard has been created for {today}."
-print(f"A rideboard has been created for {today}.")
+content = f"A ride board has been created for {today}.\n"
+print(f"A ride board has been created for {today}.")
 for employee in employees_list:
     if (employee['pickup'] != location) or (employee['time'] != time):
         location = employee['pickup']
         time = employee['time']
-        line = f"{location} to SU {time}\n"
+        line = f"\n{location} to SU {time}\n"
         content += line
         print(f"{location} to SU {time}")
     if 'HP' in employee['note']:
@@ -49,7 +49,7 @@ for employee in employees_list:
 
 
 msg = MIMEText(content)
-msg['Subject'] =f"Rideboard for {today}"
+msg['Subject'] =f"Ride Board for {today}"
 msg['To'] = 'jpelletier@keck.hawaii.edu'
 msg['From'] = 'jpelletier@keck.hawaii.edu'
 s = smtplib.SMTP('localhost')
