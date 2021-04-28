@@ -26,6 +26,7 @@ for employee in employees_list:
 
 location = ''
 time = ''
+print(f"A rideboard has been created for {today}.")
 for employee in employees_list:
     if (employee['pickup'] != location) or (employee['time'] != time):
         location = employee['pickup']
