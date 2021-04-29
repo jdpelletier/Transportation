@@ -74,6 +74,8 @@ for employee in employees_list:
             report_time = '5:00 am'
         elif time == '9a':
             report_time = '7:00 am'
+        elif time in ['3:00 pm', '5:00 pm', '9:30 pm']:
+            report_time = time
         line = f"\n{location} to SU {report_time}\n"
         content += line
         print(f"{location} to SU {report_time}")
@@ -87,10 +89,10 @@ for employee in employees_list:
         print(f"     {employee['name']}")
 
 ##Email rideBoard
-msg = MIMEText(content)
-msg['Subject'] =f"Ride Board for {tomorrow}"
-msg['To'] = 'jpelletier@keck.hawaii.edu'
-msg['From'] = 'jpelletier@keck.hawaii.edu'
-s = smtplib.SMTP('localhost')
-s.send_message(msg)
-s.quit()
+# msg = MIMEText(content)
+# msg['Subject'] =f"Ride Board for {tomorrow}"
+# msg['To'] = 'jpelletier@keck.hawaii.edu'
+# msg['From'] = 'jpelletier@keck.hawaii.edu'
+# s = smtplib.SMTP('localhost')
+# s.send_message(msg)
+# s.quit()
