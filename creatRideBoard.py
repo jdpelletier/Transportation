@@ -33,11 +33,11 @@ for employee in data:
     if employee['Type']=='oao':
         dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'SU', 'time':'3:00 pm', 'note':''}
     elif employee['Type']=='oaro':
-        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HQ', 'time':'3:00 pm', 'note':''}}
+        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HQ', 'time':'3:00 pm', 'note':''}
     elif employee['Type']=='nah2':
-        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'SU', 'time':'9:30 pm', 'note':''}}
+        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'SU', 'time':'9:30 pm', 'note':''}
     elif employee['Type'] in ['oa', 'na', 'nah', 'oao', 'oaro']:
-        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'HP', 'destination':'SU', 'time':'5:00 pm', 'note':''}}
+        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'HP', 'destination':'SU', 'time':'5:00 pm', 'note':''}
     sendUrl2 = "".join((url, f"cmd=getEmployee&lastname={employee['LastName']}"))
     data2 = urllib.request.urlopen(sendUrl2)
     data2= data2.read().decode("utf8")
