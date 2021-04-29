@@ -103,10 +103,10 @@ for employee in employees_list:
         print(f"     {employee['name']}")
 
 ##Email rideBoard
-# msg = MIMEText(content)
-# msg['Subject'] =f"Ride Board for {tomorrow}"
-# msg['To'] = 'jpelletier@keck.hawaii.edu'
-# msg['From'] = 'jpelletier@keck.hawaii.edu'
-# s = smtplib.SMTP('localhost')
-# s.send_message(msg)
-# s.quit()
+msg = MIMEText(content)
+msg['Subject'] =f"Ride Board for {tomorrow}"
+msg['To'] = 'jpelletier@keck.hawaii.edu'
+msg['From'] = 'jpelletier@keck.hawaii.edu'
+s = smtplib.SMTP('localhost')
+s.send_message(msg)
+s.quit()
