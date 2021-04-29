@@ -29,18 +29,20 @@ data = urllib.request.urlopen(sendUrl)
 data = data.read().decode("utf8")
 data = json.loads(data)
 
+night_staff = []
+
 for employee in data:
 
     if employee['Type'] in ['oa', 'na', 'nah', 'oao', 'nah2']:
         dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'HP', 'destination':'SU', 'time':'5:00 pm', 'note':''}
-        employees_list.append(dic)
+        night_staff.append(dic)
         if employee['Type']=='oao':
             dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HP', 'time':'3:00 pm', 'note':''}
         elif employee['Type']=='oaro':
             dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HQ', 'time':'3:00 pm', 'note':''}
         elif employee['Type']=='nah2':
             dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HP', 'time':'9:30 pm', 'note':''}
-        
+
     sendUrl2 = "".join((url, f"cmd=getEmployee&lastname={employee['LastName']}"))
     data2 = urllib.request.urlopen(sendUrl2)
     data2= data2.read().decode("utf8")
@@ -50,7 +52,10 @@ for employee in data:
     #Skip if BaseCampe is Waimea and going to HQ
     if (dic['pickup']=='Waimea') and (dic['destination']=='HQ'):
         continue
-    employees_list.append(dic)
+    night_staff.append(dic)
+
+##Add night staff to all employees
+employees_list.extend(sorted(night_staff, key=itemgetter('pickup'),reverse = True))
 
 ##Connect to pcal (leave) database
 conn = pymysql.connect(user='pcal', password='pcal', host='mysqlserver', database='pcal', autocommit=True)
