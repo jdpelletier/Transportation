@@ -45,7 +45,7 @@ for employee in data:
     if dic['pickup'] == '':
         dic['pickup'] = data2[0]['BaseCamp']
     #Skip if BaseCampe is Waimea and going to HQ
-    if (dic['pickup']=='Waimea') and (dic['destination'=='HQ']):
+    if (dic['pickup']=='Waimea') and (dic['destination']=='HQ'):
         continue
     employees_list.append(dic)
 
