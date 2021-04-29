@@ -65,6 +65,7 @@ location = ''
 time = ''
 content = f"A ride board has been created for {tomorrow}.\n"
 print(f"A ride board has been created for {tomorrow}.")
+print(employees_list)
 for employee in employees_list:
     if (employee['pickup'] != location) or (employee['time'] != time):
         location = employee['pickup']
