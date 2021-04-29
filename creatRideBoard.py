@@ -30,16 +30,17 @@ data = data.read().decode("utf8")
 data = json.loads(data)
 
 for employee in data:
-    if employee['Type']=='oao':
-        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HP', 'time':'3:00 pm', 'note':''}
-    elif employee['Type']=='oaro':
-        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HQ', 'time':'3:00 pm', 'note':''}
-    elif employee['Type']=='nah2':
-        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HP', 'time':'9:30 pm', 'note':''}
-    elif employee['Type'] in ['oa', 'na', 'nah', 'oao', 'nah2']:
+
+    if employee['Type'] in ['oa', 'na', 'nah', 'oao', 'nah2']:
         dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'HP', 'destination':'SU', 'time':'5:00 pm', 'note':''}
         employees_list.append(dic)
-        continue
+        if employee['Type']=='oao':
+            dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HP', 'time':'3:00 pm', 'note':''}
+        elif employee['Type']=='oaro':
+            dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HQ', 'time':'3:00 pm', 'note':''}
+        elif employee['Type']=='nah2':
+            dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HP', 'time':'9:30 pm', 'note':''}
+        
     sendUrl2 = "".join((url, f"cmd=getEmployee&lastname={employee['LastName']}"))
     data2 = urllib.request.urlopen(sendUrl2)
     data2= data2.read().decode("utf8")
