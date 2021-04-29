@@ -29,7 +29,6 @@ sendUrl = "".join((url, f"cmd=getNightStaff&date={tomorrow}"))
 data = urllib.request.urlopen(sendUrl)
 data = data.read().decode("utf8")
 data = json.loads(data)
-print(data)
 
 night_staff = []
 
