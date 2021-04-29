@@ -56,7 +56,7 @@ for employee in data:
     night_staff.append(dic)
 
 ##Add night staff to all employees
-employees_list.extend(sorted(night_staff, key=itemgetter('pickup'),reverse = True))
+employees_list.extend(sorted(night_staff, key=itemgetter('pickup')))
 
 ##Connect to pcal (leave) database
 conn = pymysql.connect(user='pcal', password='pcal', host='mysqlserver', database='pcal', autocommit=True)
