@@ -80,6 +80,10 @@ print(f"A ride board has been created for {tomorrow}.")
 for employee in employees_list:
     if (employee['pickup'] != location) or (employee['time'] != time):
         location = employee['pickup']
+        if location == 'Waimea':
+            report_location = 'HQ'
+        else:
+            report_location = location
         time = employee['time']
         if time == '7a':
             report_time = '5:00 am'
