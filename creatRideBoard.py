@@ -87,9 +87,9 @@ for employee in employees_list:
             report_time = '7:00 am'
         elif time in ['3:00 pm', '5:00 pm', '9:30 pm']:
             report_time = time
-        line = f"\n{location} to SU {report_time}\n"
+        line = f"\n{location} to {employee['destination']} {report_time}\n"
         content += line
-        print(f"{location} to SU {report_time}")
+        print(f"{location} to {employee['destination']} {report_time}")
     if 'HP' in employee['note']:
         line = f"     {employee['name']} (HPP)\n"
         content += line
