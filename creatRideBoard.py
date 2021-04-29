@@ -31,13 +31,13 @@ data = json.loads(data)
 
 for employee in data:
     if employee['Type']=='oao':
-        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'SU', 'time':'3:00 pm'}
+        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'SU', 'time':'3:00 pm', 'note':''}
     elif employee['Type']=='oaro':
-        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HQ', 'time':'3:00 pm'}
+        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HQ', 'time':'3:00 pm', 'note':''}}
     elif employee['Type']=='nah2':
-        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'SU', 'time':'9:30 pm'}
+        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'SU', 'time':'9:30 pm', 'note':''}}
     elif employee['Type'] in ['oa', 'na', 'nah', 'oao', 'oaro']:
-        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'HP', 'destination':'SU', 'time':'5:00 pm'}
+        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'HP', 'destination':'SU', 'time':'5:00 pm', 'note':''}}
     sendUrl2 = "".join((url, f"cmd=getEmployee&lastname={employee['LastName']}"))
     data2 = urllib.request.urlopen(sendUrl2)
     data2= data2.read().decode("utf8")
@@ -70,12 +70,12 @@ for employee in employees_list:
         location = employee['pickup']
         time = employee['time']
         if time == '7a':
-            time = '5:00 am'
+            report_time = '5:00 am'
         elif time == '9a':
-            time = '7:00 am'
-        line = f"\n{location} to SU {time}\n"
+            report_time = '7:00 am'
+        line = f"\n{location} to SU {report_time}\n"
         content += line
-        print(f"{location} to SU {time}")
+        print(f"{location} to SU {report_time}")
     if 'HP' in employee['note']:
         line = f"     {employee['name']} (HPP)\n"
         content += line
