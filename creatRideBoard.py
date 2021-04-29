@@ -38,6 +38,8 @@ for employee in data:
     if employee['Type'] in ['oa', 'na', 'nah', 'oao', 'nah2']:
         dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'HP', 'destination':'SU', 'time':'5:00 pm', 'note':''}
         night_staff.append(dic)
+
+    if employee['Type'] in ['oao', 'oaro', 'nah2']:
         if employee['Type']=='oao':
             dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HP', 'time':'3:00 pm', 'note':''}
         elif employee['Type']=='oaro':
@@ -45,16 +47,16 @@ for employee in data:
         elif employee['Type']=='nah2':
             dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HP', 'time':'9:30 pm', 'note':''}
 
-    sendUrl2 = "".join((url, f"cmd=getEmployee&lastname={employee['LastName']}"))
-    data2 = urllib.request.urlopen(sendUrl2)
-    data2= data2.read().decode("utf8")
-    data2 = json.loads(data2)
-    if dic['pickup'] == '':
-        dic['pickup'] = data2[0]['BaseCamp']
-    #Skip if BaseCampe is Waimea and going to HQ
-    if (dic['pickup']=='Waimea') and (dic['destination']=='HQ'):
-        continue
-    night_staff.append(dic)
+        sendUrl2 = "".join((url, f"cmd=getEmployee&lastname={employee['LastName']}"))
+        data2 = urllib.request.urlopen(sendUrl2)
+        data2= data2.read().decode("utf8")
+        data2 = json.loads(data2)
+        if dic['pickup'] == '':
+            dic['pickup'] = data2[0]['BaseCamp']
+        #Skip if BaseCampe is Waimea and going to HQ
+        if (dic['pickup']=='Waimea') and (dic['destination']=='HQ'):
+            continue
+        night_staff.append(dic)
 
 ##Add night staff to all employees
 employees_list.extend(sorted(night_staff, key=itemgetter('pickup')))
