@@ -102,6 +102,8 @@ for employee in employees_list:
         content += line
         print(f"     {employee['name']}")
 
+print(employees_list)
+
 ##Email rideBoard
 msg = MIMEText(content)
 msg['Subject'] =f"Ride Board for {tomorrow}"
