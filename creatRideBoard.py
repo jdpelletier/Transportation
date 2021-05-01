@@ -34,7 +34,7 @@ night_staff = []
 
 for employee in data:
 
-    if employee['Type'] in ['oa', 'na', 'nah', 'oao', 'nah2']:
+    if employee['Type'] in ['oa', 'oao', 'oat', 'oato', 'na', 'nah', 'na1', 'na2', 'nah2']:
         dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'HP', 'destination':'SU', 'time':'5:00 pm', 'note':''}
         night_staff.append(dic)
 
@@ -102,13 +102,11 @@ for employee in employees_list:
         content += line
         print(f"     {employee['name']}")
 
-print(employees_list)
-
 ##Email rideBoard
-msg = MIMEText(content)
-msg['Subject'] =f"Ride Board for {tomorrow}"
-msg['To'] = 'jpelletier@keck.hawaii.edu'
-msg['From'] = 'jpelletier@keck.hawaii.edu'
-s = smtplib.SMTP('localhost')
-s.send_message(msg)
-s.quit()
+# msg = MIMEText(content)
+# msg['Subject'] =f"Ride Board for {tomorrow}"
+# msg['To'] = 'jpelletier@keck.hawaii.edu'
+# msg['From'] = 'jpelletier@keck.hawaii.edu'
+# s = smtplib.SMTP('localhost')
+# s.send_message(msg)
+# s.quit()
