@@ -140,15 +140,15 @@ for employee in employees_list:
             report_time = time
         line = f"\n{report_location} to {employee['destination']} {report_time}\n"
         content += line
-        print(f"{report_location} to {employee['destination']} {report_time} {employee['assignment']}")
+        print(f"{report_location} to {employee['destination']} {report_time}")
     if 'HP' in employee['note']:
         line = f"     {employee['name']} (HPP)\n"
         content += line
-        print(f"     {employee['name']} (HPP)")
+        print(f"     {employee['name']} {employee['assignment']} (HPP)")
     else:
         line = f"     {employee['name']}\n"
         content += line
-        print(f"     {employee['name']}")
+        print(f"     {employee['name']} {employee['assignment']}")
 
 ##Email rideBoard
 # msg = MIMEText(content)
