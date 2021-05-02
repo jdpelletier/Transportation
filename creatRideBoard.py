@@ -71,20 +71,20 @@ data = data.read().decode("utf8")
 data = json.loads(data)
 
 night_staff = []
-
+#TODO night staff assignment
 for employee in data:
 
     if employee['Type'] in ['oa', 'oao', 'oat', 'oato', 'na', 'nah', 'na1', 'na2', 'nah2']:
-        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'HP', 'destination':'SU', 'time':'5:00 pm', 'note':''}
+        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'HP', 'destination':'SU', 'time':'5:00 pm', 'note':'', 'assignment': 'K12'}
         night_staff.append(dic)
 
     if employee['Type'] in ['oao', 'oaro', 'nah2']:
         if employee['Type']=='oao':
-            dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HP', 'time':'3:00 pm', 'note':''}
+            dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HP', 'time':'3:00 pm', 'note':'', 'assignment': 'K1'}
         elif employee['Type']=='oaro':
-            dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HQ', 'time':'3:00 pm', 'note':''}
+            dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HQ', 'time':'3:00 pm', 'note':'', 'assignment': 'K1'}
         elif employee['Type']=='nah2':
-            dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HP', 'time':'9:30 pm', 'note':''}
+            dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'', 'destination':'HP', 'time':'9:30 pm', 'note':'', 'assignment': 'K1'}
 
         sendUrl2 = "".join((url, f"cmd=getEmployee&lastname={employee['LastName']}"))
         data2 = urllib.request.urlopen(sendUrl2)
