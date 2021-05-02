@@ -118,7 +118,7 @@ cur = conn.cursor()
 for location in locations:
     employees_list = assign_cars(employees_list, cur, location)
 
-print(employees_list)
+
 ##Create rideBoard
 location = ''
 time = ''
