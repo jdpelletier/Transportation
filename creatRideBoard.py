@@ -19,9 +19,9 @@ def assign_cars(people, cur, location):
     early_passengers = []
     late_passengers = []
     for person in people:
-        if (person['pickup'] == location) and (person['time'] == '5:00 am'):
+        if (person['pickup'] == location) and (person['time'] == '7a'):
             early_passengers.append(person)
-        elif (person['pickup'] == location) and (person['time'] == '7:00 am'):
+        elif (person['pickup'] == location) and (person['time'] == '9a'):
             late_passengers.append(person)
     early_car_count = math.ceil(len(early_passengers)/3)
     late_car_count = math.ceil(len(late_passengers)/3)
