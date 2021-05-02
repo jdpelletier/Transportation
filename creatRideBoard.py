@@ -29,7 +29,7 @@ def assign_cars(people, cur, location):
     late_car_list = []
     for car in range(early_car_count):
         vehicle = random.choice(rows)
-        early_car_list.append(vehicle[1]])
+        early_car_list.append(vehicle[1])
         rows.remove(vehicle)
     for car in range(late_car_count):
         vehicle = random.choice(rows)
