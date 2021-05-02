@@ -39,12 +39,14 @@ def assign_cars(people, cur, location):
         i = 0
         for passenger in early_passengers:
             passenger['assignment'] = car
+            i += 1
             if i == 3:
                 break
     for car in late_car_list:
         i = 0
         for passenger in late_passengers:
             passenger['assignment'] = car
+            i += 1
             if i == 3:
                 break
     return people
