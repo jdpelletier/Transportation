@@ -12,6 +12,42 @@ from operator import itemgetter
 tomorrow_date = datetime.now() + timedelta(days=1)
 tomorrow = tomorrow_date.strftime("%Y-%m-%d")
 
+##Car assignment function
+def assign_cars(people, cur, location):
+    cur.execute(f'select * from Vehicle where location={location}')
+    rows = cur.fetchall()
+    early_passengers = []
+    late_passengers = []
+    for person in people:
+        if (person['location'] == location) and (person['time'] == '5:00 am'):
+            early_passengers.append(person)
+        elif (person['location'] == location) and (person['time'] == '7:00 am'):
+            late_passengers.append(person)
+    early_car_count = math.ceil(len(early_passengers)/3)
+    late_car_count = math.ceil(len(late_passengers)/3)
+    early_car_list = []
+    for car in early_car_count:
+        vehicle = random.choice(rows)
+        early_car_list.append(vehicle['name'])
+        rows.remove(vehicle)
+    for car in late_car_count:
+        vehicle = random.choice(rows)
+        late_car_list.append(vehicle['name'])
+        rows.remove(vehicle)
+    for car in early_car_list:
+        i = 0
+        for passenger in early_passengers:
+            passenger['assignment'] = car
+            if i == 3:
+                break
+    for car in late_car_list:
+        i = 0
+        for passenger in late_passengers:
+            passenger['assignment'] = car
+            if i == 3:
+                break
+    return people
+
 
 ##Connect to daily schedule
 conn = pymysql.connect(user='sched', password='sched', host='mysqlserver', database='schedules', autocommit=True)
@@ -120,38 +156,3 @@ for employee in employees_list:
 # s = smtplib.SMTP('localhost')
 # s.send_message(msg)
 # s.quit()
-
-def assign_cars(people, cur, location):
-    cur.execute(f'select * from Vehicle where location={location}')
-    rows = cur.fetchall()
-    early_passengers = []
-    late_passengers = []
-    for person in people:
-        if (person['location'] == location) and (person['time'] == '5:00 am'):
-            early_passengers.append(person)
-        elif (person['location'] == location) and (person['time'] == '7:00 am'):
-            late_passengers.append(person)
-    early_car_count = math.ceil(len(early_passengers)/3)
-    late_car_count = math.ceil(len(late_passengers)/3)
-    early_car_list = []
-    for car in early_car_count:
-        vehicle = random.choice(rows)
-        early_car_list.append(vehicle['name'])
-        rows.remove(vehicle)
-    for car in late_car_count:
-        vehicle = random.choice(rows)
-        late_car_list.append(vehicle['name'])
-        rows.remove(vehicle)
-    for car in early_car_list:
-        i = 0
-        for passenger in early_passengers:
-            passenger['assignment'] = car
-            if i == 3:
-                break
-    for car in late_car_list:
-        i = 0
-        for passenger in late_passengers:
-            passenger['assignment'] = car
-            if i == 3:
-                break
-    return people
