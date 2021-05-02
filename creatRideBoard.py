@@ -39,6 +39,7 @@ def assign_cars(people, cur, location):
         i = 0
         for passenger in early_passengers:
             passenger['assignment'] = car
+            early_passengers.remove(passenger)
             i += 1
             if i == 3:
                 break
@@ -46,6 +47,7 @@ def assign_cars(people, cur, location):
         i = 0
         for passenger in late_passengers:
             passenger['assignment'] = car
+            late_passengers.remove(passenger)
             i += 1
             if i == 3:
                 break
