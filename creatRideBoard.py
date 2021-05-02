@@ -26,11 +26,11 @@ def assign_cars(people, cur, location):
     early_car_count = math.ceil(len(early_passengers)/3)
     late_car_count = math.ceil(len(late_passengers)/3)
     early_car_list = []
-    for car in range(len(early_car_count)):
+    for car in range(early_car_count):
         vehicle = random.choice(rows)
         early_car_list.append(vehicle['name'])
         rows.remove(vehicle)
-    for car in range(len(late_car_count)):
+    for car in range(late_car_count):
         vehicle = random.choice(rows)
         late_car_list.append(vehicle['name'])
         rows.remove(vehicle)
