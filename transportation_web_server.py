@@ -14,23 +14,46 @@ db = SQLAlchemy(app)
 class Vehicle(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(10), unique=True, nullable=False)
+    # type = db.Column(db.String(10), unique=True, nullable=False)
+    # plate = db.Column(db.String(10), unique=True, nullable=False)
+    # si_tires = db.Column(db.Boolean, nullable=False, default=False)
     location = db.Column(db.String(20), nullable=False, default='Waimea')
     assignment = db.Column(db.String(20), unique=True)
     problem = db.Column(db.Boolean, nullable=False, default=False)
     reports = db.relationship('Report', backref='vehicle', lazy=True)
+    # mileage = db.relationship('Mileage', backref='vehicle', lazy=True)
 
     def __repr__(self):
         return f"Vehicle('{self.name}', '{self.location}', '{self.problem}', '{self.assignment}')"
 
 class Report(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.datetime.utcnow)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
     content = db.Column(db.Text, nullable=False)
     resolved = db.Column(db.Boolean, nullable=False, default=False)
     vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'), nullable=False)
 
     def __repr__(self):
         return f"Report('{self.vehicle_id}', '{self.date_posted}', '{self.content}', '{self.resolved}')"
+
+# class Mileage(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     vehicle_id = db.Column(db.Integer, db.ForeignKey('vehicle.id'), nullable=False)
+#     mileage = db.Column(db.Integer, nullable=False)
+#     date_updated = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
+#
+# class RideBoardStatus(db.Model):
+#     rb_date = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now, primary=True)
+#     rb_status = db.Column(db.String(10), nullable=False, default='Initial') #Initial, Final, Actual
+#     date_updated = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
+#
+# class RideBoard(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     date = db.Column(db.DateTime, nullable=False, default=datetime.datetime.now)
+#     # time = #TODO add time leaving base camp
+#     base_camp = db.Column(db.String(10), nullable=False)
+#     destination = db.Column(db.String(10), nullable=False)
+#     last_updated = db.Column(db.Time, nullable=False, default=datetime.datetime.now().time)
 
 @app.route('/', methods=['POST', 'GET'])
 def statuspage():

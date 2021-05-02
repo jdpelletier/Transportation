@@ -1,4 +1,7 @@
+import math
+import random
 import pymysql.cursors
+import sqlite3
 from datetime import datetime, timedelta
 import smtplib
 from email.mime.text import MIMEText
@@ -71,7 +74,14 @@ for employee in employees_list:
         if employee['name'] == row[1]:
             employees_list.remove(employee)
 
-##Create rideBoard with daytime staff
+#Pair people with cars
+locations = ['Hilo', 'Waimea', 'HP']
+conn = sqlite3.connect('/home/jpelletier/Documents/jpelletier/Transportation/fleet.db')
+cur = conn.cursor()
+for location in locations:
+    employees_list = assign_cars(employees_list, cur, location)
+
+##Create rideBoard
 location = ''
 time = ''
 content = f"A ride board has been created for {tomorrow}.\n"
@@ -92,7 +102,7 @@ for employee in employees_list:
             report_time = time
         line = f"\n{report_location} to {employee['destination']} {report_time}\n"
         content += line
-        print(f"{report_location} to {employee['destination']} {report_time}")
+        print(f"{report_location} to {employee['destination']} {report_time} {employee['assignment']}")
     if 'HP' in employee['note']:
         line = f"     {employee['name']} (HPP)\n"
         content += line
@@ -110,3 +120,38 @@ for employee in employees_list:
 # s = smtplib.SMTP('localhost')
 # s.send_message(msg)
 # s.quit()
+
+def assign_cars(people, cur, location):
+    cur.execute(f'select * from Vehicle where location={location}')
+    rows = cur.fetchall()
+    early_passengers = []
+    late_passengers = []
+    for person in people:
+        if (person['location'] == location) and (person['time'] == '5:00 am'):
+            early_passengers.append(person)
+        elif (person['location'] == location) and (person['time'] == '7:00 am'):
+            late_passengers.append(person)
+    early_car_count = math.ceil(len(early_passengers)/3)
+    late_car_count = math.ceil(len(late_passengers)/3)
+    early_car_list = []
+    for car in early_car_count:
+        vehicle = random.choice(rows)
+        early_car_list.append(vehicle['name'])
+        rows.remove(vehicle)
+    for car in late_car_count:
+        vehicle = random.choice(rows)
+        late_car_list.append(vehicle['name'])
+        rows.remove(vehicle)
+    for car in early_car_list:
+        i = 0
+        for passenger in early_passengers:
+            passenger['assignment'] = car
+            if i == 3:
+                break
+    for car in late_car_list:
+        i = 0
+        for passenger in late_passengers:
+            passenger['assignment'] = car
+            if i == 3:
+                break
+    return people
