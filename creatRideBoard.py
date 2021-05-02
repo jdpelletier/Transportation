@@ -14,7 +14,7 @@ tomorrow = tomorrow_date.strftime("%Y-%m-%d")
 
 ##Car assignment function
 def assign_cars(people, cur, location):
-    cur.execute(f'select * from Vehicle where location={location}')
+    cur.execute(f'select * from Vehicle where location="{location}"')
     rows = cur.fetchall()
     early_passengers = []
     late_passengers = []
