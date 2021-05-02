@@ -38,17 +38,17 @@ def assign_cars(people, cur, location):
     for car in early_car_list:
         i = 0
         for passenger in early_passengers:
-            passenger['assignment'] = car
-            early_passengers.remove(passenger)
-            i += 1
+            if passenger['assignment'] == '':
+                passenger['assignment'] = car
+                i += 1
             if i == 3:
                 break
     for car in late_car_list:
         i = 0
         for passenger in late_passengers:
-            passenger['assignment'] = car
-            late_passengers.remove(passenger)
-            i += 1
+            if passenger['assignment'] == '':
+                passenger['assignment'] = car
+                i += 1
             if i == 3:
                 break
     return people
@@ -64,7 +64,7 @@ employees_list = []
 ##Add all employees working that day to employee list
 for row in rows:
     if row[6] == 'SU':
-        dic = {'name':row[2],'pickup':row[4], 'destination':'SU', 'time':row[7], 'note':row[14]}
+        dic = {'name':row[2],'pickup':row[4], 'destination':'SU', 'time':row[7], 'note':row[14], 'assignment': ''}
         employees_list.append(dic)
 
 ##Add night staff
