@@ -58,6 +58,8 @@ def assign_cars(people, cur, location):
                 i += 1
             if i == 3:
                 break
+    cur.commit()
+    cur.close()
     return people
 
 
@@ -127,6 +129,7 @@ locations = ['Hilo', 'Waimea', 'HP']
 conn = sqlite3.connect('/home/jpelletier/Documents/jpelletier/Transportation/fleet.db')
 cur = conn.cursor()
 cur.execute(f'UPDATE Vehicle SET assignment=NULL')
+cur.commit()
 for location in locations:
     employees_list = assign_cars(employees_list, cur, location)
 
