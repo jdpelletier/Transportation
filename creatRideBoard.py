@@ -126,7 +126,7 @@ for employee in employees_list:
 locations = ['Hilo', 'Waimea', 'HP']
 conn = sqlite3.connect('/home/jpelletier/Documents/jpelletier/Transportation/fleet.db')
 cur = conn.cursor()
-cur.execute(f'UPDATE Vehicle SET or IGRNORE assignment=""')
+cur.execute(f'UPDATE Vehicle SET or IGNORE assignment=""')
 for location in locations:
     employees_list = assign_cars(employees_list, cur, location)
 
