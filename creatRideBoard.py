@@ -41,10 +41,8 @@ def assign_cars(people, cur, location):
         for passenger in early_passengers:
             if passenger['assignment'] == '':
                 passenger['assignment'] = car[1]
-                if car[3] == None:
-                    pname = passenger['name']
-                    cur.execute(f'UPDATE Vehicle SET assignment="{pname}" where name="{car[1]}"')
-                    car[3] = pname
+                pname = passenger['name']
+                cur.execute(f'UPDATE Vehicle SET assignment="{pname}" where name="{car[1]}"')
                 i += 1
             if i == 3:
                 break
@@ -54,10 +52,9 @@ def assign_cars(people, cur, location):
         for passenger in late_passengers:
             if passenger['assignment'] == '':
                 passenger['assignment'] = car[1]
-                if car[3] == None:
-                    pname = passenger['name']
-                    cur.execute(f'UPDATE Vehicle SET assignment="{pname}" where name="{car[1]}"')
-                    car[3] = pname
+                pname = passenger['name']
+                cur.execute(f'UPDATE Vehicle SET assignment="{pname}" where name="{car[1]}"')
+                car[3] = pname
                 i += 1
             if i == 3:
                 break
