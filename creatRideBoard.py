@@ -18,6 +18,7 @@ def assign_cars(people, cur, location): #TODO add type to SUV
     rows = cur.fetchall()
     early_passengers = []
     late_passengers = []
+    night_passengers = []
     for person in people:
         if (person['pickup'] == location) and (person['time'] == '7a'):
             early_passengers.append(person)
@@ -71,17 +72,17 @@ def assign_cars(people, cur, location): #TODO add type to SUV
                 break
     for car in night_car_list:
         car = list(car)
-        if len(late_passengers) < 4:
+        if len(night_passengers) < 4:
             for passenger in late_passengers:
                 if (passenger['assignment'] == '') and (car[3] == None):
                     passenger['assignment'] = car[1]
                     pname = passenger['name']
                     cur.execute(f'UPDATE Vehicle SET assignment="{pname}" where name="{car[1]}"')
                     car[3] = pname
-        elif len(late_passengers) == 4:
+        elif len(night_passengers) == 4:
             car = list(car)
             i=0
-            for passenger in late_passengers:
+            for passenger in night_passengers:
                 if (passenger['assignment'] == '') and (i<2):
                     passenger['assignment'] = car[1]
                     pname = passenger['name']
@@ -97,7 +98,7 @@ def assign_cars(people, cur, location): #TODO add type to SUV
         else:
             car = list(car)
             i = 0
-            for passenger in late_passengers:
+            for passenger in night_passengers:
                 if passenger['assignment'] == '':
                     passenger['assignment'] = car[1]
                     pname = passenger['name']
