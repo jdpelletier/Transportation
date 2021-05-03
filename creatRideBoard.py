@@ -75,10 +75,9 @@ def assign_cars(people, cur, location): #TODO add type to SUV
     for car in night_car_list:
         car = list(car)
         if len(night_passengers) < 4:
-            print('hit 1')
             for passenger in late_passengers:
+                print(f'car[3]={car[3]}')
                 if (passenger['assignment'] == '') and (car[3] == None):
-                    print('hit 2')
                     passenger['assignment'] = car[1]
                     pname = passenger['name']
                     cur.execute(f'UPDATE Vehicle SET assignment="{pname}" where name="{car[1]}"')
