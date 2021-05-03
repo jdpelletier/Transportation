@@ -36,6 +36,7 @@ def assign_cars(people, cur, location):
         late_car_list.append(vehicle)
         rows.remove(vehicle)
     for car in early_car_list:
+        car = list(car)
         i = 0
         for passenger in early_passengers:
             if passenger['assignment'] == '':
@@ -48,6 +49,7 @@ def assign_cars(people, cur, location):
             if i == 3:
                 break
     for car in late_car_list:
+        car = list(car)
         i = 0
         for passenger in late_passengers:
             if passenger['assignment'] == '':
