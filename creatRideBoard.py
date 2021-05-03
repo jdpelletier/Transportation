@@ -34,13 +34,14 @@ def assign_cars(people, cur, location):
     for car in range(late_car_count):
         vehicle = random.choice(rows)
         late_car_list.append(vehicle[1])
-        cur.execute(f'UPDATE Vehicle SET assignment="{car}" where name="{vehicle[1]}"')
         rows.remove(vehicle)
     for car in early_car_list:
         i = 0
         for passenger in early_passengers:
             if passenger['assignment'] == '':
                 passenger['assignment'] = car
+                if car[3] = '';
+                    cur.execute(f'UPDATE Vehicle SET assignment="{passenger['name']}" where name="{car[1]}"')
                 i += 1
             if i == 3:
                 break
