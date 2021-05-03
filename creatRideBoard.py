@@ -58,8 +58,6 @@ def assign_cars(people, cur, location):
                 i += 1
             if i == 3:
                 break
-    cur.commit()
-    cur.close()
     return people
 
 
