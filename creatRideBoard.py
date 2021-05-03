@@ -38,20 +38,17 @@ def assign_cars(people, cur, location): #TODO add type to SUV
     late_car_list = []
     night_car_list = []
     for car in range(early_car_count):
-        if early_car_count != 0:
-            vehicle = random.choice(rows)
-            early_car_list.append(vehicle)
-            rows.remove(vehicle)
+        vehicle = random.choice(rows)
+        early_car_list.append(vehicle)
+        rows.remove(vehicle)
     for car in range(late_car_count):
-        if late_car_count != 0:
-            vehicle = random.choice(rows)
-            late_car_list.append(vehicle)
-            rows.remove(vehicle)
+        vehicle = random.choice(rows)
+        late_car_list.append(vehicle)
+        rows.remove(vehicle)
     for car in range(night_car_count):
-        if night_car_count != 0:
-            vehicle = random.choice(rows)
-            night_car_list.append(vehicle)
-            rows.remove(vehicle)
+        vehicle = random.choice(rows)
+        night_car_list.append(vehicle)
+        rows.remove(vehicle)
     for car in early_car_list:
         car = list(car)
         i = 0
@@ -177,7 +174,7 @@ for employee in employees_list:
             employees_list.remove(employee)
 
 #Pair people with cars
-locations = ['Hilo', 'Waimea', 'HP']
+locations = ['Hilo', 'Waimea', 'Hale Pohaku']
 conn = sqlite3.connect('/home/jpelletier/Documents/jpelletier/Transportation/fleet.db')
 cur = conn.cursor()
 cur.execute(f'UPDATE Vehicle SET assignment=NULL')
