@@ -29,17 +29,17 @@ def assign_cars(people, cur, location):
     late_car_list = []
     for car in range(early_car_count):
         vehicle = random.choice(rows)
-        early_car_list.append(vehicle[1])
+        early_car_list.append(vehicle)
         rows.remove(vehicle)
     for car in range(late_car_count):
         vehicle = random.choice(rows)
-        late_car_list.append(vehicle[1])
+        late_car_list.append(vehicle)
         rows.remove(vehicle)
     for car in early_car_list:
         i = 0
         for passenger in early_passengers:
             if passenger['assignment'] == '':
-                passenger['assignment'] = car
+                passenger['assignment'] = car[1]
                 if car[3] == '':
                     pname = passenger['name']
                     cur.execute(f'UPDATE Vehicle SET assignment="{pname}" where name="{car[1]}"')
@@ -50,7 +50,7 @@ def assign_cars(people, cur, location):
         i = 0
         for passenger in late_passengers:
             if passenger['assignment'] == '':
-                passenger['assignment'] = car
+                passenger['assignment'] = car[1]
                 i += 1
             if i == 3:
                 break
