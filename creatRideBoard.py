@@ -26,6 +26,7 @@ def assign_cars(people, cur, location): #TODO add type to SUV
             late_passengers.append(person)
         elif (person['pickup'] == location) and (person['time'] == '5:00 pm'):
             night_passengers.append(person)
+            print(f'night passengers {len(night_passengers)}')
     early_car_count = math.ceil(len(early_passengers)/3)
     late_car_count = math.ceil(len(late_passengers)/3)
     if len(night_passengers) > 2:
