@@ -33,7 +33,7 @@ def assign_cars(people, cur, location): #TODO add type to SUV
     elif 3 > len(night_passengers) > 0:
         night_car_count = 2
     else:
-        night_car_count = 0ss
+        night_car_count = 0
     early_car_list = []
     late_car_list = []
     night_car_list = []
