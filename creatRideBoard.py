@@ -42,7 +42,7 @@ def assign_cars(people, cur, location):
             if passenger['assignment'] == '':
                 passenger['assignment'] = car[1]
                 pname = passenger['name']
-                cur.execute(f'UPDATE Vehicle SET assignment="Summit" where name="{car[1]}"')
+                cur.execute(f'UPDATE Vehicle SET assignment="{pname}" where name="{car[1]}"')
                 i += 1
             if i == 3:
                 break
@@ -53,7 +53,7 @@ def assign_cars(people, cur, location):
             if passenger['assignment'] == '':
                 passenger['assignment'] = car[1]
                 pname = passenger['name']
-                cur.execute(f'UPDATE Vehicle SET assignment="Summit" where name="{car[1]}"')
+                cur.execute(f'UPDATE Vehicle SET assignment="{pname}" where name="{car[1]}"')
                 car[3] = pname
                 i += 1
             if i == 3:
@@ -126,7 +126,7 @@ for employee in employees_list:
 locations = ['Hilo', 'Waimea', 'HP']
 conn = sqlite3.connect('/home/jpelletier/Documents/jpelletier/Transportation/fleet.db')
 cur = conn.cursor()
-cur.execute(f'UPDATE Vehicle SET or IGNORE assignment=""')
+cur.execute(f'UPDATE Vehicle SET or IGNORE assignment=NULL')
 for location in locations:
     employees_list = assign_cars(employees_list, cur, location)
 
