@@ -13,9 +13,7 @@ tomorrow_date = datetime.now() + timedelta(days=1)
 tomorrow = tomorrow_date.strftime("%Y-%m-%d")
 
 ##Car assignment function
-def assign_cars(people, conn, location):
-    cur = conn.cursor()
-    cur.execute(f'UPDATE Vehicle SET assignment=NULL')
+def assign_cars(people, cur, location):
     cur.execute(f'select * from Vehicle where location="{location}"')
     rows = cur.fetchall()
     early_passengers = []
@@ -60,8 +58,8 @@ def assign_cars(people, conn, location):
                 i += 1
             if i == 3:
                 break
-    conn.commit()
-    conn.close()
+    cur.commit()
+    cur.close()
     return people
 
 
@@ -129,8 +127,12 @@ for employee in employees_list:
 #Pair people with cars
 locations = ['Hilo', 'Waimea', 'HP']
 conn = sqlite3.connect('/home/jpelletier/Documents/jpelletier/Transportation/fleet.db')
+cur = conn.cursor()
+cur.execute(f'UPDATE Vehicle SET assignment=NULL')
 for location in locations:
-    employees_list = assign_cars(employees_list, conn, location)
+    employees_list = assign_cars(employees_list, cur, location)
+conn.commit()
+conn.close()
 
 
 ##Create rideBoard
