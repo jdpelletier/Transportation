@@ -13,7 +13,7 @@ tomorrow_date = datetime.now() + timedelta(days=1)
 tomorrow = tomorrow_date.strftime("%Y-%m-%d")
 
 ##Car assignment function
-def assign_cars(people, cur, location):
+def assign_cars(people, cur, location): #TODO add type to SUV
     cur.execute(f'select * from Vehicle where location="{location}"')
     rows = cur.fetchall()
     early_passengers = []
@@ -23,10 +23,17 @@ def assign_cars(people, cur, location):
             early_passengers.append(person)
         elif (person['pickup'] == location) and (person['time'] == '9a'):
             late_passengers.append(person)
+        elif (person['pickup'] == location) and (person['time'] == '5:00 pm'):
+            night_passengers.append(person)
     early_car_count = math.ceil(len(early_passengers)/3)
     late_car_count = math.ceil(len(late_passengers)/3)
+    if len(night_passengers) > 2:
+        night_car_count = 3
+    elif 3 > len(night_passengers) > 0:
+        night_car_count = 2
     early_car_list = []
     late_car_list = []
+    night_car_list = []
     for car in range(early_car_count):
         vehicle = random.choice(rows)
         early_car_list.append(vehicle)
@@ -34,6 +41,10 @@ def assign_cars(people, cur, location):
     for car in range(late_car_count):
         vehicle = random.choice(rows)
         late_car_list.append(vehicle)
+        rows.remove(vehicle)
+    for car in range(night_car_count):
+        vehicle = random.choice(rows)
+        night_car_list.append(vehicle)
         rows.remove(vehicle)
     for car in early_car_list:
         car = list(car)
@@ -58,6 +69,43 @@ def assign_cars(people, cur, location):
                 i += 1
             if i == 3:
                 break
+    for car in night_car_list:
+        car = list(car)
+        if len(late_passengers) < 4:
+            for passenger in late_passengers:
+                if (passenger['assignment'] == '') and (car[3] == None):
+                    passenger['assignment'] = car[1]
+                    pname = passenger['name']
+                    cur.execute(f'UPDATE Vehicle SET assignment="{pname}" where name="{car[1]}"')
+                    car[3] = pname
+        elif len(late_passengers) == 4:
+            car = list(car)
+            i=0
+            for passenger in late_passengers:
+                if (passenger['assignment'] == '') and (i<2):
+                    passenger['assignment'] = car[1]
+                    pname = passenger['name']
+                    cur.execute(f'UPDATE Vehicle SET assignment="{pname}" where name="{car[1]}"')
+                    car[3] = pname
+                    i+=1
+                else:
+                    if (passenger['assignment'] == '') and (car[3] == None):
+                        passenger['assignment'] = car[1]
+                        pname = passenger['name']
+                        cur.execute(f'UPDATE Vehicle SET assignment="{pname}" where name="{car[1]}"')
+                        car[3] = pname
+        else:
+            car = list(car)
+            i = 0
+            for passenger in late_passengers:
+                if passenger['assignment'] == '':
+                    passenger['assignment'] = car[1]
+                    pname = passenger['name']
+                    cur.execute(f'UPDATE Vehicle SET assignment="{pname}" where name="{car[1]}"')
+                    car[3] = pname
+                    i += 1
+                if i == 2:
+                    break
     return people
 
 
@@ -131,6 +179,8 @@ for location in locations:
     employees_list = assign_cars(employees_list, cur, location)
 conn.commit()
 conn.close()
+
+#Add night crew
 
 
 ##Create rideBoard
