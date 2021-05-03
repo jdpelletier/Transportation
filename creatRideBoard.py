@@ -137,7 +137,7 @@ night_staff = []
 for employee in data:
 
     if employee['Type'] in ['oa', 'oao', 'oat', 'oato', 'na', 'nah', 'na1', 'na2', 'nah2']:
-        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'HP', 'destination':'SU', 'time':'5:00 pm', 'note':'', 'assignment': 'K12'}
+        dic = {'name':f"{employee['LastName']}, {employee['FirstName']}", 'pickup':'HP', 'destination':'SU', 'time':'5:00 pm', 'note':'', 'assignment': ''}
         night_staff.append(dic)
 
     if employee['Type'] in ['oao', 'oaro', 'nah2']:
