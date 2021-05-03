@@ -40,7 +40,7 @@ def assign_cars(people, cur, location):
         for passenger in early_passengers:
             if passenger['assignment'] == '':
                 passenger['assignment'] = car
-                if car[3] = '':
+                if car[3] == '':
                     cur.execute(f'UPDATE Vehicle SET assignment="{passenger['name']}" where name="{car[1]}"')
                 i += 1
             if i == 3:
