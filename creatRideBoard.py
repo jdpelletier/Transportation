@@ -75,8 +75,7 @@ def assign_cars(people, cur, location): #TODO add type to SUV
     for car in night_car_list:
         car = list(car)
         if len(night_passengers) < 4:
-            for passenger in late_passengers:
-                print(f'car[3]={car[3]}')
+            for passenger in night_passengers:
                 if (passenger['assignment'] == '') and (car[3] == None):
                     passenger['assignment'] = car[1]
                     pname = passenger['name']
